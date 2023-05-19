@@ -30,14 +30,14 @@ export interface IType {
     label: string;
 }
 
-export interface IComponentInput {
+export interface IInput {
     id: number;
     component: IComponent;
     name: string;
     type: IType;
 }
 
-export interface IComponentOutput {
+export interface IOutput {
     id: number;
     component: IComponent;
     name: string;
@@ -47,6 +47,6 @@ export interface IComponentOutput {
 export interface IComponent {
     id: number;
     name: string;
-    inputs: IComponentInput[];
-    outputs: IComponentOutput[];
+    inputs: IInput[];
+    outputs: IOutput[];
 }
