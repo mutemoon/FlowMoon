@@ -1,9 +1,10 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./shared/models/User";
+import { User } from "./models/User";
 import * as path from "path";
-import { WsServer } from "tsrpc";
+import { HttpServer } from "tsrpc";
 import { serviceProto } from './shared/protocols/serviceProto';
+import { Project } from "./models/Project";
 
 
 // TypeORM 初始化
@@ -14,9 +15,9 @@ const AppDataSource = new DataSource({
     username: "root",
     password: "111111",
     database: "FlowMoon",
-    synchronize: true,
+    synchronize: false,
     logging: true,
-    entities: [User],
+    entities: [User, Project],
     subscribers: [],
     migrations: [],
 })
@@ -29,7 +30,7 @@ AppDataSource.initialize()
 
 
 // Create the Server
-export const server = new WsServer(serviceProto, {
+export const server = new HttpServer(serviceProto, {
     port: 3060,
     // Remove this to use binary mode (remove from the client too)
     json: true

@@ -1,55 +1,39 @@
 import { ServiceProto } from 'tsrpc-proto';
-import { MsgChat } from './MsgChat';
 import { ReqSend, ResSend } from './PtlSend';
-
-// This is a demo service proto file (auto generated)
-// Feel free to delete it
+import { ReqLogin, ResLogin } from './user/PtlLogin';
 
 export interface ServiceType {
     api: {
         "Send": {
             req: ReqSend,
             res: ResSend
+        },
+        "user/Login": {
+            req: ReqLogin,
+            res: ResLogin
         }
     },
     msg: {
-        "Chat": MsgChat
+
     }
 }
 
 export const serviceProto: ServiceProto<ServiceType> = {
+    "version": 1,
     "services": [
-        {
-            "id": 0,
-            "name": "Chat",
-            "type": "msg"
-        },
         {
             "id": 1,
             "name": "Send",
             "type": "api"
+        },
+        {
+            "id": 2,
+            "name": "user/Login",
+            "type": "api",
+            "conf": {}
         }
     ],
     "types": {
-        "MsgChat/MsgChat": {
-            "type": "Interface",
-            "properties": [
-                {
-                    "id": 0,
-                    "name": "content",
-                    "type": {
-                        "type": "String"
-                    }
-                },
-                {
-                    "id": 1,
-                    "name": "time",
-                    "type": {
-                        "type": "Date"
-                    }
-                }
-            ]
-        },
         "PtlSend/ReqSend": {
             "type": "Interface",
             "properties": [
@@ -73,6 +57,36 @@ export const serviceProto: ServiceProto<ServiceType> = {
                     }
                 }
             ]
+        },
+        "user/PtlLogin/ReqLogin": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseRequest"
+                    }
+                }
+            ]
+        },
+        "base/BaseRequest": {
+            "type": "Interface"
+        },
+        "user/PtlLogin/ResLogin": {
+            "type": "Interface",
+            "extends": [
+                {
+                    "id": 0,
+                    "type": {
+                        "type": "Reference",
+                        "target": "base/BaseResponse"
+                    }
+                }
+            ]
+        },
+        "base/BaseResponse": {
+            "type": "Interface"
         }
     }
 };
