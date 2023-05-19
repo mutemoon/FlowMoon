@@ -5,7 +5,7 @@ import { User } from "./User";
 @Entity()
 export class Project implements IProject {
     @PrimaryGeneratedColumn()
-    pid: number;
+    id: number;
 
     @Column()
     name: string;

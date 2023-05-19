@@ -5,7 +5,7 @@ import { Project } from "./Project";
 @Entity()
 export class User implements IUser {
     @PrimaryGeneratedColumn()
-    uid: number;
+    id: number;
 
     @Column()
     phone: string;

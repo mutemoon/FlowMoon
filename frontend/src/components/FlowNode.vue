@@ -16,6 +16,7 @@ console.log(props.node);
 <template>
   <div class="flow-node-container">
     <FlowNode></FlowNode>
+    <div v-for=""></div>
   </div>
 </template>
 
